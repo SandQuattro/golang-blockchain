@@ -38,4 +38,5 @@ PASS
 
 # Future plans
 
+- more tests with random payload and blockchain benchmark
 - block corruption and validation
