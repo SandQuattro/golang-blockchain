@@ -40,3 +40,4 @@ PASS
 
 - more tests with random payload and blockchain benchmark
 - block corruption and validation
+- gob serialization / deserialization
