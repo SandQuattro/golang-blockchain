@@ -3,6 +3,7 @@ package blockchain
 import (
 	"crypto/sha256"
 	"encoding/binary"
+	"encoding/json"
 	"fmt"
 	"strconv"
 	"strings"
@@ -54,4 +55,21 @@ func (b *Block) mine(difficulty int) {
 		b.pow++
 		b.setHash()
 	}
+}
+
+func (b *Block) encodeData(data any) error {
+	bytes, err := json.Marshal(data)
+	if err != nil {
+		return err
+	}
+	b.payload = bytes
+	return nil
+}
+
+func (b *Block) decodeData(result any) error {
+	err := json.Unmarshal(b.payload, &result)
+	if err != nil {
+		return err
+	}
+	return nil
 }
