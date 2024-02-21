@@ -4,7 +4,10 @@ import (
 	"math"
 	"strings"
 	"testing"
+	"time"
 )
+
+const difficulty = 2
 
 func TestBlock_calculateHash(t *testing.T) {
 	b := &Block{
@@ -79,4 +82,17 @@ func TestMine(t *testing.T) {
 	// Test mining with negative difficulty
 	block.mine(-1)
 	// No need to check for specific result, just ensuring that it doesn't cause any errors
+}
+
+func BenchmarkMine(b *testing.B) {
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		block := &Block{
+			previousHash: "previousHash",
+			payload:      []byte("payload"),
+			timestamp:    time.Now().UTC().UnixNano(),
+			pow:          12345,
+		}
+		block.mine(difficulty)
+	}
 }
