@@ -31,26 +31,31 @@ func (b *Block) generateHash() {
 	b.hash = b.calculateHash()
 }
 
-// Вычисление хеша текущего блока
+// calculateHash calculates the hash of the current block.
 func (b *Block) calculateHash() string {
-	var buf []byte
-	buf = append(buf, b.previousHash...)
-	buf = append(buf, b.payload...)
-	buf = binary.LittleEndian.AppendUint64(buf, uint64(b.timestamp))
-	buf = append(buf, strconv.Itoa(b.pow)...)
-	return fmt.Sprintf("%x", sha256.Sum256(buf))
+	// Concatenate previous hash, payload, timestamp, and proof of work.
+	var data []byte
+	data = append(data, b.previousHash...)
+	data = append(data, b.payload...)
+	data = binary.LittleEndian.AppendUint64(data, uint64(b.timestamp))
+	data = append(data, strconv.Itoa(b.pow)...)
+
+	// Compute the SHA256 hash of the concatenated data and return it as a hexadecimal string.
+	return fmt.Sprintf("%x", sha256.Sum256(data))
 }
 
-// В зависимости от установленной сложности на блокчейне выполняем вычисление хеша
-// проверяем, что хеш начинается с нужного количества нулей
-// если нет, то продолжаем выполнение хеширования
-// pow показывает количество попыток, которые были произведены для получения hash текущего блока
+// mine performs the mining process based on the specified difficulty level.
+// If the difficulty is 0, it sets pow to 0 and generates a hash.
+// Otherwise, it continues generating a hash until it starts with the required number of zeros.
 func (b *Block) mine(difficulty int) {
+	// If the difficulty is 0, set pow to 0 and generate a hash
 	if difficulty == 0 {
 		b.pow = 0
 		b.generateHash()
 		return
 	}
+
+	// Continue generating a hash until it starts with the required number of zeros
 	for !strings.HasPrefix(b.hash, strings.Repeat("0", difficulty)) {
 		b.pow++
 		b.generateHash()
