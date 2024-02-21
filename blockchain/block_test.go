@@ -92,7 +92,7 @@ func BenchmarkMine(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		// Create a new Block instance with predefined values for previousHash, payload, timestamp, and pow.
 		block := &Block{
-			previousHash: "previousHash",
+			previousHash: "0",
 			payload:      []byte("payload"),
 			timestamp:    time.Now().UTC().UnixNano(),
 			pow:          0,
