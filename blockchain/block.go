@@ -3,8 +3,8 @@ package blockchain
 import (
 	"crypto/sha256"
 	"encoding/binary"
+	"encoding/hex"
 	"encoding/json"
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -40,8 +40,10 @@ func (b *Block) calculateHash() string {
 	data = binary.LittleEndian.AppendUint64(data, uint64(b.timestamp))
 	data = append(data, strconv.Itoa(b.pow)...)
 
-	// Compute the SHA256 hash of the concatenated data and return it as a hexadecimal string.
-	return fmt.Sprintf("%x", sha256.Sum256(data))
+	// Compute the SHA256 hash of the concatenated data
+	hash := sha256.Sum256(data)
+	// and return it as a hexadecimal string.
+	return hex.EncodeToString(hash[:])
 }
 
 // mine performs the mining process based on the specified difficulty level.
