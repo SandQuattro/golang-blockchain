@@ -84,15 +84,20 @@ func TestMine(t *testing.T) {
 	// No need to check for specific result, just ensuring that it doesn't cause any errors
 }
 
+// BenchmarkMine is a function for benchmarking the mine method of the Block struct.
 func BenchmarkMine(b *testing.B) {
+	// Reset the timer to exclude setup time.
 	b.ResetTimer()
+	// Loop b.N times, which is a way for Go to ask the benchmarking code to keep running until b.StopTimer() is called.
 	for i := 0; i < b.N; i++ {
+		// Create a new Block instance with predefined values for previousHash, payload, timestamp, and pow.
 		block := &Block{
 			previousHash: "previousHash",
 			payload:      []byte("payload"),
 			timestamp:    time.Now().UTC().UnixNano(),
-			pow:          12345,
+			pow:          0,
 		}
+		// Perform the mining operation on the block with a predefined difficulty level.
 		block.mine(difficulty)
 	}
 }
