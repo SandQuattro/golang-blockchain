@@ -1,6 +1,7 @@
 package blockchain
 
 import (
+	"github.com/brianvoe/gofakeit/v7"
 	"math"
 	"strings"
 	"testing"
@@ -93,7 +94,7 @@ func BenchmarkMine(b *testing.B) {
 		// Create a new Block instance with predefined values for previousHash, payload, timestamp, and pow.
 		block := &Block{
 			previousHash: "0",
-			payload:      []byte("payload"),
+			payload:      []byte(gofakeit.BitcoinAddress()),
 			timestamp:    time.Now().UTC().UnixNano(),
 			pow:          0,
 		}

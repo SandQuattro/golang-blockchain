@@ -33,7 +33,7 @@ Thus, the mine function ensures mining is carried out by iteratively searching f
 
 # Benchmark
 BenchmarkMine
-BenchmarkMine-8   	   16689	     71375 ns/op
+BenchmarkMine-8   	   14839	     80656 ns/op
 PASS
 
 # Future plans
