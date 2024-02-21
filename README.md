@@ -30,6 +30,12 @@ The pow counter is incremented (b.pow++). This change produces different hashes 
 The generateHash method is called to generate a new hash with an increased pow value.
 The loop is terminated when a hash that satisfies the complexity condition (starting with the specified number of zeros) is found.
 Thus, the mine function ensures mining is carried out by iteratively searching for a hash that matches a given difficulty level. This process is a key mechanism for ensuring security and decentralization in blockchain networks.
+
+# Benchmark
+BenchmarkMine
+BenchmarkMine-8   	   16689	     71375 ns/op
+PASS
+
 # Future plans
 
 - block corruption and validation
