@@ -22,12 +22,12 @@ type Block struct {
 type BlockOperations interface {
 	encodeData(data any) error
 	decodeData(result any) error
-	setHash()
+	generateHash()
 	calculateHash() string
 	mine(difficulty int)
 }
 
-func (b *Block) setHash() {
+func (b *Block) generateHash() {
 	b.hash = b.calculateHash()
 }
 
@@ -48,12 +48,12 @@ func (b *Block) calculateHash() string {
 func (b *Block) mine(difficulty int) {
 	if difficulty == 0 {
 		b.pow = 0
-		b.setHash()
+		b.generateHash()
 		return
 	}
 	for !strings.HasPrefix(b.hash, strings.Repeat("0", difficulty)) {
 		b.pow++
-		b.setHash()
+		b.generateHash()
 	}
 }
 

@@ -56,7 +56,7 @@ func CreateBlockchain(data []byte, difficulty int) Blockchain {
 	}
 	if difficulty == 0 {
 		initial.pow = 0
-		initial.setHash()
+		initial.generateHash()
 	} else {
 		// майним блок, устанавливаем hash
 		initial.mine(difficulty)
