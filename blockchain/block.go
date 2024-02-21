@@ -49,7 +49,7 @@ func (b *Block) calculateHash() string {
 // Otherwise, it continues generating a hash until it starts with the required number of zeros.
 func (b *Block) mine(difficulty int) {
 	// If the difficulty is 0, set pow to 0 and generate a hash
-	if difficulty == 0 {
+	if difficulty <= 0 {
 		b.pow = 0
 		b.generateHash()
 		return
