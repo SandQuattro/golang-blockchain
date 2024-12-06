@@ -15,6 +15,7 @@ type Block struct {
 	previousHash string
 	hash         string
 	timestamp    int64
+	nonce        uint32 // Nonce, use only once
 	// proof-of-work computation
 	pow int
 }
@@ -39,6 +40,7 @@ func (b *Block) calculateHash() string {
 	data = append(data, b.payload...)
 	data = binary.LittleEndian.AppendUint64(data, uint64(b.timestamp))
 	data = append(data, strconv.Itoa(b.pow)...)
+	data = binary.LittleEndian.AppendUint32(data, b.nonce)
 
 	// Compute the SHA256 hash of the concatenated data
 	hash := sha256.Sum256(data)

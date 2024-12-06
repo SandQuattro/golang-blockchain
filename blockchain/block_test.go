@@ -19,7 +19,7 @@ func TestBlock_calculateHash(t *testing.T) {
 		pow:          12345,
 	}
 
-	expectedHash := "b6817dbb1fd542b05db571d310fea0484fed286995ff47608d7c1d9b833e81dc"
+	expectedHash := "2509db91908422a87c2de55b0305cafaba20afcc2b050c483e2560a7f3a31fb8"
 
 	actualHash := b.calculateHash()
 
@@ -35,7 +35,7 @@ func TestBlock_calculateHash(t *testing.T) {
 		pow:          0,
 	}
 
-	expectedHash = "d26493520dce67d4a71c93ab2827cb8dce6a25353f6c6d08d9bd5585a549e628"
+	expectedHash = "696587ed13a8b5f14e7f7b80768f4146dbc0cc66d4366b64f4d55acb4458d695"
 
 	actualHash = b.calculateHash()
 
@@ -51,7 +51,7 @@ func TestBlock_calculateHash(t *testing.T) {
 		pow:          2147483647,    // max int32 value
 	}
 
-	expectedHash = "0dfa88eaeb485c965deda4442182ddddb118cd837ef008604b734e3e556797ea"
+	expectedHash = "b889a9602ff5b2cc28cba570a94a35a342b609addde78527926daaa93abc6406"
 
 	actualHash = b.calculateHash()
 
