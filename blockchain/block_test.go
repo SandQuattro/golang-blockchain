@@ -1,14 +1,15 @@
 package blockchain
 
 import (
-	"github.com/brianvoe/gofakeit/v7"
 	"math"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/brianvoe/gofakeit/v7"
 )
 
-const difficulty = 2
+const difficulty = 5
 
 func TestBlock_calculateHash(t *testing.T) {
 	b := &Block{
